@@ -25,10 +25,13 @@
   [grid]
   (map move-left grid))
 
+(def move-down (comp (partial apply map list) move-grid-right (partial apply map list)))
+
 (defn move-grid-down
   "Moves an entire grid down"
   [grid]
-  grid)
+  (move-down grid))
+
 
 (defn move-grid-up
   "Moves an entire grid up"
