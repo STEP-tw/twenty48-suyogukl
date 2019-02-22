@@ -33,7 +33,9 @@
   (move-down grid))
 
 
+(def move-up (comp (partial apply map list) move-grid-left (partial apply map list)))
+
 (defn move-grid-up
   "Moves an entire grid up"
   [grid]
-  grid)
+  (move-up grid))
