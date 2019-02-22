@@ -1,7 +1,6 @@
 (ns twenty48.core
   (:gen-class))
 
-
 (def remove-zeroes (partial filter (comp not zero?)))
 
 (def group-2-consecutive (comp (partial mapcat (partial partition-all 2)) (comp (partial partition-by identity) remove-zeroes)))
@@ -12,6 +11,10 @@
 
 (def move-right (comp prepend-zeroes add-consecutive group-2-consecutive))
 
+(def postpend-zeroes (comp (partial take 4) flatten (partial conj '(0 0 0 0))))
+
+(def move-left (comp postpend-zeroes add-consecutive group-2-consecutive))
+
 (defn move-grid-right
   "Moves an entire grid to the right"
   [grid]
@@ -20,7 +23,7 @@
 (defn move-grid-left
   "Moves an entire grid to the left"
   [grid]
-  grid)
+  (map move-left grid))
 
 (defn move-grid-down
   "Moves an entire grid down"
