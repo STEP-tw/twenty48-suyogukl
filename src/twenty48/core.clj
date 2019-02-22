@@ -15,27 +15,10 @@
 
 (def move-left (comp postpend-zeroes add-consecutive group-2-consecutive))
 
-(defn move-grid-right
-  "Moves an entire grid to the right"
-  [grid]
-  (map move-right grid))
+(def move-grid-right(partial map move-right))
 
-(defn move-grid-left
-  "Moves an entire grid to the left"
-  [grid]
-  (map move-left grid))
+(def move-grid-left(partial map move-left))
 
-(def move-down (comp (partial apply map list) move-grid-right (partial apply map list)))
+(def move-grid-down (comp (partial apply map list) move-grid-right (partial apply map list)))
 
-(defn move-grid-down
-  "Moves an entire grid down"
-  [grid]
-  (move-down grid))
-
-
-(def move-up (comp (partial apply map list) move-grid-left (partial apply map list)))
-
-(defn move-grid-up
-  "Moves an entire grid up"
-  [grid]
-  (move-up grid))
+(def move-grid-up (comp (partial apply map list) move-grid-left (partial apply map list)))
